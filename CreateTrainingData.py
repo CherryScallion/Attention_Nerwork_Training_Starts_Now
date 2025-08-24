@@ -1,7 +1,6 @@
 import os
 import numpy as np
 import random
-# 获取脚本所在目录
 script_dir = os.path.dirname(os.path.abspath(__file__))
 output_path = os.path.join(script_dir, "TrainingData.txt")
 def generate_matrix_data(output_path):
@@ -24,4 +23,5 @@ def generate_matrix_data(output_path):
                     sum_output_matrix = f"{sum_output_matrix},{output_matrix}"
             f.write(f" {sum_input_matrix} {sum_output_matrix}\n")
 generate_matrix_data(output_path)
+
 print("Training data created successfully!")
