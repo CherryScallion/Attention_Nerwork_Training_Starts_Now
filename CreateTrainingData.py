@@ -23,5 +23,6 @@ def generate_matrix_data(output_path):
                     sum_output_matrix = f"{sum_output_matrix},{output_matrix}"
             f.write(f" {sum_input_matrix} {sum_output_matrix}\n")
 generate_matrix_data(output_path)
-
+#Maybe it was because it was late at night and I was bored, or maybe Plants vs. Zombies had drained my energy, but I felt sleepy as soon as I saw the foreign tadpole characters.
 print("Training data created successfully!")
+
