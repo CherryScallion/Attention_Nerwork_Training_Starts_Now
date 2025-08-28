@@ -12,7 +12,7 @@ import torch.nn as nn
 script_dir = os.path.dirname(os.path.abspath(__file__))
 training_dir = os.path.join(script_dir, "TrainingData.txt")
 def parse_attention_data(data_string):
-    vector_pattern = re.compile(r'\[(-?\d+),\s*(-?\d+)\]')# Regular expression to match vectors like [x, y](this is excusive for this specific dataset we created)
+    vector_pattern = re.compile(r'\[(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)\]')# Regular expression to match vectors like [x, y](this is excusive for this specific dataset we created)
     matches = vector_pattern.findall(data_string)# Find all matches in the input string
     vectors = [list(map(float, match)) for match in matches]# Convert matched strings to float lists
     input_vectors = []
@@ -86,7 +86,19 @@ def train_attention_model(input_data, output_data, num_epochs=1000, learning_rat
     return model
 # Train the model
 trained_model = train_attention_model(input_data, output_data)
+
 print("Training complete!")
+
+attention = Classic_Attention_Module(d_model)
+
+W_q_matrix = attention.W_q.weight.data
+W_k_matrix = attention.W_k.weight.data
+W_v_matrix = attention.W_v.weight.data
+
+print("W_q matrix:\n", W_q_matrix)
+print("W_k matrix:\n", W_k_matrix)
+print("W_v matrix:\n", W_v_matrix)
+
 # Save the trained model
 model_path = os.path.join(script_dir, "classic_attention_model.pth")
 torch.save(trained_model.state_dict(), model_path)
