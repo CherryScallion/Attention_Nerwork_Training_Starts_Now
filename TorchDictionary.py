@@ -21,7 +21,7 @@ torch.cat((X,Y), dim=0), torch.cat((X, Y), dim=1) # concatenate along rows, dim=
 torch.zeros((2,3,4))#2 layers of 3x4 matrices
 torch.ones((2,3,4))#2 layers of 3x4 matrices
 torch.randn((2,3,4))#2 layers of 3x4 matrices with random values
-
+len(X), X.shape, X.size()#len() gives the size of the first dimension, shape and size() give the shape of the tensor
 #broadcasting mechanism
 #When operating on two tensors, if their shapes are different, 
 #PyTorch will automatically expand the smaller tensor to match the shape of the larger tensor.
@@ -50,3 +50,22 @@ a, b
 #convert a list to a tensor
 a = [3.5, 4, 5]
 b = torch.tensor(a(dtype=np.float32))#torch.tensor() only accepts list of numbers, dtype make sure the data type is float32.
+#dimensionallity decrease and increase
+a = torch.arange(12).reshape(3,4)
+a, a.shape  #3 rows, 4 columns
+a.sum(), a.sum(dim=0), a.sum(dim=1) #sum of all elements, sum of each column, sum of each row
+a.mean(), a.mean(dim=0), a.mean(dim=1) #mean of all elements, mean of each column, mean of each row
+a.sum().item() #sum of all elements as a python number 
+A_sum_axis0 = a.sum(dim=0)
+A_sum_axis1 = a.sum(dim=1)
+#dot product
+y = torch.ones(4, dtype=torch.float32)
+x = torch.arange(12, dtype=torch.float32).reshape(3,4)
+x, y, torch.dot(x, y) # dot product is the sum of the products of the corresponding entries of the two sequences of numbers.
+torch.sum(x * y) # equivalent to dot product
+
+#use matrix-vector product to calculate the dot product of each row of x and y
+torch.matmul(x, y) # matrix-vector product
+
+#caculate norm
+torch.norm(x), torch.norm(y) # Frobenius norm for matrices, Euclidean norm for vectors
