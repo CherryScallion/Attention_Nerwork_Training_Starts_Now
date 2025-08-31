@@ -69,3 +69,11 @@ torch.matmul(x, y) # matrix-vector product
 
 #caculate norm
 torch.norm(x), torch.norm(y) # Frobenius norm for matrices, Euclidean norm for vectors
+
+
+#check if GPU is available
+torch.cuda.is_available()
+
+#print all functions in torch
+print (dir(torch))
+
